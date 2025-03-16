@@ -27,20 +27,23 @@
     --space-xl: 5rem;
     
     /* Bordas */
-    --radius-sm: 0.25rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 1rem;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
     --radius-full: 9999px;
     
     /* Sombras */
-    --shadow-sm: 0 2px 4px var(--shadow);
-    --shadow-md: 0 4px 8px var(--shadow);
-    --shadow-lg: 0 8px 16px var(--shadow);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
     
     /* Transições */
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
+
+    /* Definir variável RGB para o primary para uso em rgba */
+    --primary-rgb: 67, 97, 238;
 }
 
 /* Tema escuro */
@@ -51,6 +54,7 @@ body.dark-theme {
     --text-secondary: #adb5bd;
     --border: #2d2d2d;
     --shadow: rgba(0, 0, 0, 0.3);
+    --primary-rgb: 67, 97, 238;
 }
 
 /* Reset e configurações gerais */
@@ -607,58 +611,123 @@ nav {
     justify-content: center;
 }
 
+.about-image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 .about-image {
     position: relative;
-    width: 350px;
-    height: 450px;
+    width: 300px;
+    height: 300px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(var(--primary-rgb), 0.2);
+    border: 4px solid var(--primary);
 }
 
-.about-image-border {
-    position: absolute;
+.profile-photo {
     width: 100%;
     height: 100%;
-    border: 3px solid var(--primary);
-    border-radius: var(--radius-md);
-    top: 20px;
-    left: 20px;
-    z-index: 1;
+    object-fit: cover;
 }
 
-.about-image-shape {
+.experience-badge {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: var(--primary);
-    border-radius: var(--radius-md);
-    top: 0;
-    left: 0;
-    z-index: 2;
-    opacity: 0.1;
-}
-
-.about-experience {
-    position: absolute;
-    bottom: 30px;
-    right: -30px;
-    background-color: var(--primary);
+    bottom: 10px;
+    right: 10px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
-    padding: 1rem;
+    padding: 0.4rem;
     border-radius: var(--radius-md);
-    text-align: center;
-    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    box-shadow: var(--shadow-md);
     z-index: 3;
+    opacity: 0.9;
 }
 
 .experience-number {
-    font-size: 2.5rem;
+    font-size: 1.2rem;
     font-weight: 700;
     line-height: 1;
-    display: block;
 }
 
 .experience-text {
-    font-size: 0.9rem;
+    font-size: 0.65rem;
+    text-align: center;
     font-weight: 500;
+}
+
+.about-bio {
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-bio:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.about-bio h3 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+}
+
+.bio-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.bio-location i {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.bio-description {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.bio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.bio-tag {
+    background-color: rgba(var(--primary-rgb), 0.1);
+    color: var(--primary);
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid rgba(var(--primary-rgb), 0.2);
+    transition: all 0.3s ease;
+}
+
+.bio-tag:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-2px);
 }
 
 .about-right {
@@ -803,7 +872,19 @@ nav {
     }
     
     .about-left {
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .about-right {
+        width: 100%;
+    }
+    
+    .about-image {
+        width: 250px;
+        height: 250px;
     }
 }
 
@@ -870,8 +951,8 @@ nav {
     }
     
     .hero-image-container {
-        width: 250px;
-        height: 250px;
+        width: 200px;
+        height: 200px;
     }
     
     .hero-code-block {
@@ -882,23 +963,19 @@ nav {
         font-size: 0.7rem;
     }
     
-    .about-image {
-        width: 250px;
-        height: 350px;
-    }
-    
-    .about-experience {
-        right: -15px;
-        bottom: 15px;
-        padding: 0.8rem;
+    .experience-badge {
+        min-width: 50px;
+        padding: 0.3rem;
+        bottom: 5px;
+        right: 5px;
     }
     
     .experience-number {
-        font-size: 2rem;
+        font-size: 1rem;
     }
     
     .experience-text {
-        font-size: 0.8rem;
+        font-size: 0.6rem;
     }
 }
 
@@ -907,13 +984,81 @@ nav {
     padding: var(--space-lg) 0;
     background-color: var(--bg-primary);
     position: relative;
+    overflow: hidden;
 }
 
 .testimonial-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: var(--space-sm);
+    align-items: center;
+    margin-bottom: var(--space-md);
+    padding: 0 var(--space-md);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.testimonial-header h2 {
+    margin-bottom: 0;
+    color: var(--text-primary);
+}
+
+.testimonial-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.testimonial-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+    position: relative;
+}
+
+/* Estilos para o carrossel */
+.testimonial-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.testimonial-carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+
+.testimonial-slide {
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 0.5rem;
+}
+
+/* Estilos para os cards de recomendação */
+.testimonial-card {
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.empty-card {
+    visibility: hidden;
 }
 
 .testimonial-author h4 {
@@ -930,6 +1075,7 @@ nav {
 .testimonial-date {
     font-size: 0.75rem;
     color: var(--text-secondary);
+    margin-top: 0.25rem;
 }
 
 .testimonial-content {
@@ -937,13 +1083,88 @@ nav {
     font-size: var(--fs-body);
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: var(--space-md);
+    margin: var(--space-md) 0;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
 }
 
+/* Controles do carrossel */
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.carousel-control:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+.carousel-control-prev {
+    left: -20px;
+}
+
+.carousel-control-next {
+    right: -20px;
+}
+
+/* Indicadores do carrossel */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.carousel-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-indicator.active {
+    background-color: var(--primary);
+    transform: scale(1.2);
+}
+
+/* Badge do LinkedIn */
+.linkedin-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    background-color: #0077B5;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+}
+
+.linkedin-badge i {
+    font-size: 1rem;
+}
+
+/* Link para o perfil do LinkedIn */
 .linkedin-profile-link {
     display: inline-flex;
     align-items: center;
@@ -961,11 +1182,14 @@ nav {
     transform: translateX(5px);
 }
 
+/* Estado de carregamento */
 .linkedin-loading {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 300px;
+    gap: 1rem;
 }
 
 .linkedin-loading-spinner {
@@ -981,22 +1205,22 @@ nav {
     to { transform: rotate(360deg); }
 }
 
-/* Ajustes adicionais para responsividade */
-@media (max-width: 576px) {
-    .testimonial-header {
-        flex-direction: column;
-    }
-    
-    .testimonial-date {
-        margin-top: 0.5rem;
-    }
-    
-    .testimonial-content {
-        -webkit-line-clamp: 5;
-    }
+/* Mensagem quando não há recomendações */
+.no-recommendations {
+    text-align: center;
+    padding: 3rem;
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
 }
 
-/* Estilos para o botão de atualizar */
+.no-recommendations p {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+/* Botão de atualizar */
 .refresh-button {
     display: inline-flex;
     align-items: center;
@@ -1020,24 +1244,70 @@ nav {
     font-size: 1rem;
 }
 
-/* Estilos adicionais para a seção de recomendações */
-.linkedin-badge {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 30px;
-    height: 30px;
-    background-color: #0077B5;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-md);
+/* Status da última sincronização */
+#last-sync-status {
+    font-size: var(--fs-small);
+    color: var(--text-secondary);
 }
 
-.linkedin-badge i {
-    font-size: 1rem;
+/* Responsividade para o carrossel */
+@media (max-width: 992px) {
+    .carousel-control {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .carousel-control-prev {
+        left: -10px;
+    }
+    
+    .carousel-control-next {
+        right: -10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonial-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .testimonial-slide {
+        grid-template-columns: 1fr;
+    }
+    
+    .carousel-control {
+        top: auto;
+        bottom: -50px;
+        transform: none;
+    }
+    
+    .carousel-control-prev {
+        left: calc(50% - 50px);
+    }
+    
+    .carousel-control-next {
+        right: calc(50% - 50px);
+    }
+    
+    .carousel-indicators {
+        margin-top: 3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+    
+    .testimonial-content {
+        -webkit-line-clamp: 5;
+    }
+    
+    .testimonial-date {
+        margin-top: 0.5rem;
+    }
 }
 
 /* Manter outros estilos existentes */
@@ -1492,4 +1762,924 @@ footer p {
 
 @keyframes loading {
     to { transform: rotate(360deg); }
+}
+
+/* Experience Section */
+.experience-section {
+    padding: var(--space-xl) 0;
+    background-color: var(--bg-secondary);
+    position: relative;
+}
+
+.experience-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: var(--primary);
+    top: 0;
+    bottom: 0;
+    left: 50px;
+    margin-left: -1px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 4rem;
+    padding-left: 3rem;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    z-index: 1;
+}
+
+.timeline-dot i {
+    font-size: 1.5rem;
+}
+
+.timeline-date {
+    position: absolute;
+    top: 0;
+    left: 70px;
+    background-color: var(--primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+}
+
+.timeline-content {
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.timeline-content h3 {
+    color: var(--text-primary);
+    font-size: var(--fs-h3);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content h4 {
+    color: var(--primary);
+    font-size: var(--fs-h4);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.timeline-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.timeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.timeline-tags span {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid var(--border);
+}
+
+/* Experience Summary */
+.experience-summary {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 4rem;
+    padding: 2rem;
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    transition: transform 0.3s ease;
+    flex: 1;
+    min-width: 200px;
+}
+
+.summary-item:hover {
+    transform: translateY(-5px);
+}
+
+.summary-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.summary-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.summary-text {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Responsive styles for timeline */
+@media (max-width: 992px) {
+    .timeline::before {
+        left: 40px;
+    }
+    
+    .timeline-dot {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .timeline-dot i {
+        font-size: 1.2rem;
+    }
+    
+    .timeline-date {
+        left: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .timeline {
+        padding: 0 1rem;
+    }
+    
+    .timeline::before {
+        left: 30px;
+    }
+    
+    .timeline-item {
+        padding-left: 2.5rem;
+    }
+    
+    .timeline-dot {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .timeline-dot i {
+        font-size: 1rem;
+    }
+    
+    .timeline-date {
+        position: relative;
+        left: 0;
+        top: -10px;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+    
+    .timeline-content {
+        padding: 1.5rem;
+        margin-top: 0;
+    }
+    
+    .experience-summary {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .summary-item {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .timeline::before {
+        left: 25px;
+    }
+    
+    .timeline-item {
+        padding-left: 2rem;
+    }
+    
+    .timeline-dot {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .timeline-content h4 {
+        font-size: 1rem;
+    }
+    
+    .timeline-content {
+        padding: 1.2rem;
+    }
+    
+    .summary-number {
+        font-size: 2.5rem;
+    }
+}
+
+/* Novos estilos para a seção Sobre Mim */
+.about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background-color: var(--bg-primary);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+.highlight-icon {
+    font-size: 2rem;
+    color: var(--primary);
+    min-width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(var(--primary-rgb), 0.1);
+    border-radius: 50%;
+}
+
+.highlight-text h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.highlight-text p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.about-text {
+    margin-bottom: 2rem;
+}
+
+.about-text p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.about-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    border: 1px solid var(--border);
+}
+
+.contact-btn:hover {
+    background-color: var(--bg-primary);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Responsividade para a seção Sobre Mim */
+@media (max-width: 992px) {
+    .about-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .about-left {
+        margin-bottom: 2rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .about-right {
+        width: 100%;
+    }
+    
+    .about-image {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .highlight-item {
+        padding: 1.2rem;
+    }
+    
+    .highlight-icon {
+        font-size: 1.5rem;
+        min-width: 40px;
+        height: 40px;
+    }
+    
+    .highlight-text h3 {
+        font-size: 1.1rem;
+    }
+    
+    .about-cta {
+        flex-direction: column;
+    }
+    
+    .contact-btn, .download-cv {
+        width: 100%;
+    }
+}
+
+/* Manter outros estilos existentes */
+
+/* Timeline More Link */
+.timeline-more {
+    text-align: center;
+    margin-top: 2rem;
+    padding-left: 3rem;
+}
+
+.view-more-experiences {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--bg-primary);
+    color: var(--primary);
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    border: 1px solid var(--primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.view-more-experiences:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.view-more-experiences i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.view-more-experiences:hover i {
+    transform: translateX(3px);
+}
+
+@media (max-width: 768px) {
+    .timeline-more {
+        padding-left: 2.5rem;
+    }
+    
+    .view-more-experiences {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .timeline-more {
+        padding-left: 2rem;
+    }
+}
+
+/* Estilos para a seção de credenciais */
+.about-credentials {
+    margin: 2.5rem 0;
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.credentials-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.credentials-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.credentials-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--primary);
+}
+
+.credentials-header i {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.credentials-header h3 {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin: 0;
+}
+
+.credentials-item {
+    padding: 1rem;
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--primary);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.credentials-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.credentials-item h4 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.credentials-place {
+    font-size: 0.95rem;
+    color: var(--primary);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.credentials-date {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.credentials-details {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.credentials-details p {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.credentials-details i {
+    color: var(--primary);
+    font-size: 1rem;
+    margin-top: 0.2rem;
+}
+
+/* Responsividade para a seção de credenciais */
+@media (max-width: 992px) {
+    .credentials-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-credentials {
+        margin: 2rem 0;
+    }
+    
+    .credentials-container {
+        padding: 1.5rem;
+    }
+    
+    .credentials-item {
+        padding: 0.75rem;
+    }
+    
+    .credentials-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .credentials-item h4 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .credentials-container {
+        padding: 1rem;
+    }
+    
+    .credentials-header {
+        gap: 0.5rem;
+    }
+    
+    .credentials-header i {
+        font-size: 1.2rem;
+    }
+    
+    .credentials-details p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Estilos para as abas na seção Sobre Mim */
+.about-tabs {
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.tabs-header {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+}
+
+.tab-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    outline: none;
+}
+
+.tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.tab-btn.active {
+    color: var(--primary);
+}
+
+.tab-btn.active::after {
+    transform: scaleX(1);
+}
+
+.tab-btn:hover {
+    color: var(--primary);
+}
+
+.tabs-content {
+    padding: 1.5rem;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Estilos para os itens de educação */
+.education-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.education-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.education-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    background-color: rgba(var(--primary-rgb), 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.education-details {
+    flex: 1;
+}
+
+.education-details h4 {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+}
+
+.education-place {
+    font-size: 0.9rem;
+    color: var(--primary);
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+}
+
+.education-date {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.education-topics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+}
+
+.education-topics span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.education-topics span::before {
+    content: '•';
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+/* Estilos para a seção de especialidades */
+.about-skills {
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+}
+
+.about-skills h3 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.about-skills h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary);
+    border-radius: var(--radius-full);
+}
+
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.skill-tag {
+    background-color: rgba(var(--primary-rgb), 0.1);
+    color: var(--primary);
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid rgba(var(--primary-rgb), 0.2);
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Estilos para os botões de CTA */
+.about-cta {
+    display: flex;
+    gap: 1rem;
+}
+
+.download-cv, .contact-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+.download-cv {
+    background-color: var(--primary);
+    color: white;
+}
+
+.contact-btn {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.download-cv:hover, .contact-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.download-cv:hover {
+    background-color: var(--primary-dark);
+}
+
+.contact-btn:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .about-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .about-left {
+        margin-bottom: 2rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .about-right {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .tabs-header {
+        flex-direction: row;
+    }
+    
+    .education-item {
+        flex-direction: row;
+        gap: 0.75rem;
+    }
+    
+    .about-cta {
+        flex-direction: column;
+    }
+    
+    .download-cv, .contact-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-image {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .experience-badge {
+        min-width: 50px;
+        padding: 0.3rem;
+        bottom: 5px;
+        right: 5px;
+    }
+    
+    .experience-number {
+        font-size: 1rem;
+    }
+    
+    .experience-text {
+        font-size: 0.6rem;
+    }
+    
+    .tabs-content {
+        padding: 1rem;
+    }
+    
+    .tab-btn {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .education-details h4 {
+        font-size: 0.95rem;
+    }
+    
+    .skill-tag {
+        padding: 0.3rem 0.7rem;
+        font-size: 0.8rem;
+    }
 } 

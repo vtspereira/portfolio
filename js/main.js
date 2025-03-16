@@ -70,8 +70,10 @@ document.addEventListener('DOMContentLoaded', function() {
         new TypeWriter(txtElement, words, 3000);
     }
     
-    // Animar estatísticas quando a seção about estiver visível
+    // Animar estatísticas quando a seção about ou experience estiver visível
     const aboutSection = document.querySelector('.about-section');
+    const experienceSection = document.querySelector('.experience-section');
+    
     if (aboutSection) {
         const aboutObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -85,6 +87,19 @@ document.addEventListener('DOMContentLoaded', function() {
         aboutObserver.observe(aboutSection);
     }
     
+    if (experienceSection) {
+        const experienceObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    experienceObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        experienceObserver.observe(experienceSection);
+    }
+    
     // Configurar scroll spy para destacar links de navegação ativos
     setupScrollSpy();
     
@@ -96,6 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Inicializar o scroll inicial para definir o estado do header
     handleScroll();
+    
+    // Configurar as abas na seção Sobre Mim
+    setupTabs();
 });
 
 // Efeito de digitação para o texto do hero
@@ -155,7 +173,7 @@ class TypeWriter {
 
 // Animação para os números de estatísticas
 function animateStats() {
-    const stats = document.querySelectorAll('.stat-number');
+    const stats = document.querySelectorAll('.stat-number, .summary-number');
     
     stats.forEach(stat => {
         const target = parseInt(stat.getAttribute('data-target'));
@@ -269,4 +287,31 @@ window.addEventListener('scroll', () => {
     if (profileImage) {
         profileImage.style.transform = `translateY(${scrollPosition * 0.1}px)`;
     }
-}); 
+});
+
+// Configurar as abas na seção Sobre Mim
+function setupTabs() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    
+    if (tabBtns.length > 0) {
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remover classe active de todos os botões
+                tabBtns.forEach(b => b.classList.remove('active'));
+                
+                // Adicionar classe active ao botão clicado
+                btn.classList.add('active');
+                
+                // Obter o id do painel a ser mostrado
+                const tabId = btn.getAttribute('data-tab');
+                
+                // Esconder todos os painéis
+                tabPanels.forEach(panel => panel.classList.remove('active'));
+                
+                // Mostrar o painel correspondente
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+    }
+} 
