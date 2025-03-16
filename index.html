@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitor Soares Pereira - Desenvolvedor Full Stack</title>
-    <meta name="description" content="Portfólio de Vitor Soares Pereira, Desenvolvedor Full Stack especializado em .NET, Angular e tecnologias web modernas.">
+    <title>Vitor Pereira | Desenvolvedor Full Stack</title>
+    <meta name="description" content="Portfólio de Vitor Pereira, Desenvolvedor Full Stack especializado em .NET, React e arquitetura de software.">
+    <meta name="keywords" content="desenvolvedor, full stack, .NET, React, portfólio, software">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/favicon.png">
@@ -13,37 +14,53 @@
     <link rel="stylesheet" href="css/style.css">
     
     <!-- Fontes -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vitorpereira.dev/">
+    <meta property="og:title" content="Vitor Pereira | Desenvolvedor Full Stack">
+    <meta property="og:description" content="Portfólio de Vitor Pereira, Desenvolvedor Full Stack especializado em .NET, React e arquitetura de software.">
+    <meta property="og:image" content="https://vitorpereira.dev/img/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://vitorpereira.dev/">
+    <meta property="twitter:title" content="Vitor Pereira | Desenvolvedor Full Stack">
+    <meta property="twitter:description" content="Portfólio de Vitor Pereira, Desenvolvedor Full Stack especializado em .NET, React e arquitetura de software.">
+    <meta property="twitter:image" content="https://vitorpereira.dev/img/og-image.jpg">
 </head>
 <body>
-    <!-- Partículas de fundo -->
+    <!-- Particles.js Background -->
     <div id="particles-js"></div>
     
-    <!-- Botão de alternância de tema -->
-    <div class="theme-toggle">
-        <i class='bx bx-moon'></i>
-    </div>
-    
     <!-- Header -->
-    <header>
-        <nav>
+    <header class="fixed w-full top-0 left-0 z-50 transition-all duration-300">
+        <nav class="container flex justify-between items-center py-4">
             <div class="logo">
-                <a href="#">VP</a>
+                <a href="#" class="text-2xl font-bold relative">Vitor<span class="text-primary">.dev</span></a>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Início</a></li>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#experience">Experiência</a></li>
-                <li><a href="#skills">Habilidades</a></li>
-                <li><a href="#projects">Projetos</a></li>
-                <li><a href="#testimonial">Recomendações</a></li>
-                <li><a href="#contact">Contato</a></li>
-            </ul>
-            <div class="menu-toggle">
-                <i class='bx bx-menu'></i>
+            
+            <div class="nav-links flex space-x-6">
+                <a href="#home" class="active relative font-medium hover:text-primary transition-colors">Início</a>
+                <a href="#about" class="relative font-medium hover:text-primary transition-colors">Sobre</a>
+                <a href="#experience" class="relative font-medium hover:text-primary transition-colors">Experiência</a>
+                <a href="#skills" class="relative font-medium hover:text-primary transition-colors">Habilidades</a>
+                <a href="#projects" class="relative font-medium hover:text-primary transition-colors">Projetos</a>
+                <a href="#contact" class="relative font-medium hover:text-primary transition-colors">Contato</a>
+            </div>
+            
+            <button class="theme-toggle flex items-center justify-center w-10 h-10 rounded-full bg-light-secondary dark:bg-dark-secondary transition-all duration-300">
+                <i class='bx bx-moon text-xl'></i>
+            </button>
+            
+            <div class="menu-toggle hidden md:flex flex-col justify-between w-8 h-6 cursor-pointer">
+                <span class="w-full h-1 bg-dark-primary dark:bg-light-primary rounded-full transition-all"></span>
+                <span class="w-full h-1 bg-dark-primary dark:bg-light-primary rounded-full transition-all"></span>
+                <span class="w-full h-1 bg-dark-primary dark:bg-light-primary rounded-full transition-all"></span>
             </div>
         </nav>
     </header>
@@ -166,7 +183,7 @@ class Desenvolvedor {
                                         <i class='bx bx-code-alt'></i>
                                     </div>
                                     <div class="education-details">
-                                        <h4>Especialização em Arquitetura de Software</h4>
+                                        <h4>Pós-graduação Tech developer 360</h4>
                                         <p class="education-place">Rocketseat + Sirius</p>
                                         <p class="education-date">Março 2025 - Presente</p>
                                     </div>
@@ -242,95 +259,104 @@ class Desenvolvedor {
         </div>
     </section>
     
-    <!-- Experiência Profissional Section -->
-    <section id="experience" class="experience-section">
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-light-primary dark:bg-dark-primary">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header animate-on-scroll">
                 <h2>Experiência Profissional</h2>
                 <div class="section-line"></div>
             </div>
             
-            <div class="timeline">
+            <div class="modern-timeline animate-on-scroll">
                 <!-- Experiência 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot">
-                        <i class='bx bx-briefcase'></i>
-                    </div>
-                    <div class="timeline-date">
-                        <span>Outubro 2023 - Presente</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Desenvolvedor Fullstack</h3>
-                        <h4>Smart One Soluções Empresariais</h4>
-                        <p>
-                            Sou responsável pela manutenção e sustentabilidade das integrações da empresa que usam o SAP BI for HANA/SQL. Meu foco principal é otimizar o fluxo de compras e o controle de estoque, garantindo eficiência e confiabilidade, além de identificação e resolução de problemas. Também atuo na reestruturação do projeto principal da empresa, propondo novas arquiteturas, ferramentas e otimizações.
+                <div class="modern-item">
+                    <div class="modern-dot"></div>
+                    <div class="modern-date-badge">2021 - Presente</div>
+                    <div class="modern-content">
+                        <h3 class="modern-company">Empresa Atual S.A.</h3>
+                        <h4 class="modern-role">Desenvolvedor Full Stack Sênior</h4>
+                        <p class="modern-description">
+                            Liderança técnica em projetos de grande porte, implementando soluções escaláveis e de alta performance. Responsável pela arquitetura de sistemas e mentoria de desenvolvedores juniores.
                         </p>
-                        <div class="timeline-tags">
-                            <span>SAP BI</span>
-                            <span>HANA/SQL</span>
-                            <span>Integrações</span>
-                            <span>Otimização</span>
+                        <div class="modern-skills">
+                            <span class="modern-skill">.NET Core</span>
+                            <span class="modern-skill">Angular</span>
+                            <span class="modern-skill">Azure</span>
+                            <span class="modern-skill">SQL Server</span>
+                            <span class="modern-skill">Docker</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Experiência 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot">
-                        <i class='bx bx-code-block'></i>
-                    </div>
-                    <div class="timeline-date">
-                        <span>Outubro 2021 - Outubro 2023</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Tech Leader/Desenvolvedor</h3>
-                        <h4>Wiser Educação</h4>
-                        <p>
-                            Responsável pelas integrações entre os CRM's da empresa e o SAP BI for HANA/SQL. À frente do projeto de reestruturação da TI BackOffice, propondo e implementando novas arquiteturas, ferramentas e migração de códigos legados. Encarregado por garantir a integridade de algumas integrações e ambientes, qualidade e versionamento de códigos.
+                <div class="modern-item">
+                    <div class="modern-dot"></div>
+                    <div class="modern-date-badge">2018 - 2021</div>
+                    <div class="modern-content">
+                        <h3 class="modern-company">Empresa Anterior Ltda.</h3>
+                        <h4 class="modern-role">Desenvolvedor Full Stack Pleno</h4>
+                        <p class="modern-description">
+                            Desenvolvimento e manutenção de aplicações web e APIs para o setor financeiro. Implementação de recursos de segurança e otimização de performance.
                         </p>
-                        <div class="timeline-tags">
-                            <span>CRM</span>
-                            <span>SAP BI</span>
-                            <span>Arquitetura</span>
-                            <span>Migração</span>
+                        <div class="modern-skills">
+                            <span class="modern-skill">.NET Framework</span>
+                            <span class="modern-skill">React</span>
+                            <span class="modern-skill">AWS</span>
+                            <span class="modern-skill">MongoDB</span>
+                            <span class="modern-skill">RabbitMQ</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Experiência 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot">
-                        <i class='bx bx-code-curly'></i>
-                    </div>
-                    <div class="timeline-date">
-                        <span>Agosto 2020 - Setembro 2021</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Desenvolvedor Fullstack</h3>
-                        <h4>BRC Educacional</h4>
-                        <p>
-                            Um dos responsáveis pelo desenvolvimento dos projetos da empresa, utilizando as linguagens C#, VueJS e banco de dados PostgreSQL. Realizando a gestão através de metodologias ágeis, implementação de sistemas para orientação de carreira e auxílio na escolha de cursos superiores.
+                <div class="modern-item">
+                    <div class="modern-dot"></div>
+                    <div class="modern-date-badge">2016 - 2018</div>
+                    <div class="modern-content">
+                        <h3 class="modern-company">Startup Inovadora</h3>
+                        <h4 class="modern-role">Desenvolvedor Back-end</h4>
+                        <p class="modern-description">
+                            Desenvolvimento de APIs e serviços para uma plataforma SaaS de gestão empresarial. Implementação de arquitetura de microserviços e integração com sistemas legados.
                         </p>
-                        <div class="timeline-tags">
-                            <span>C#</span>
-                            <span>VueJS</span>
-                            <span>PostgreSQL</span>
-                            <span>Metodologias Ágeis</span>
+                        <div class="modern-skills">
+                            <span class="modern-skill">C#</span>
+                            <span class="modern-skill">ASP.NET</span>
+                            <span class="modern-skill">Entity Framework</span>
+                            <span class="modern-skill">SQL Server</span>
+                            <span class="modern-skill">Redis</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Link para mais experiências -->
-                <div class="timeline-more">
-                    <a href="https://www.linkedin.com/in/vtspereira/" target="_blank" class="view-more-experiences">
-                        <i class='bx bx-link-external'></i>
-                        Ver histórico completo no LinkedIn
-                    </a>
+                <!-- Experiência 4 -->
+                <div class="modern-item">
+                    <div class="modern-dot"></div>
+                    <div class="modern-date-badge">2014 - 2016</div>
+                    <div class="modern-content">
+                        <h3 class="modern-company">Primeira Empresa</h3>
+                        <h4 class="modern-role">Desenvolvedor Front-end Jr.</h4>
+                        <p class="modern-description">
+                            Desenvolvimento de interfaces web responsivas e interativas para aplicações corporativas. Implementação de designs e melhorias de usabilidade.
+                        </p>
+                        <div class="modern-skills">
+                            <span class="modern-skill">HTML5</span>
+                            <span class="modern-skill">CSS3</span>
+                            <span class="modern-skill">JavaScript</span>
+                            <span class="modern-skill">jQuery</span>
+                            <span class="modern-skill">Bootstrap</span>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            
+            <div class="linkedin-sync animate-on-scroll">
+                <a href="https://www.linkedin.com/in/vtspereira/" target="_blank" title="Última sincronização: Nunca">
+                    <i class='bx bxl-linkedin'></i> Ver perfil completo no LinkedIn
+                </a>
             </div>
         </div>
     </section>
-    
+
     <!-- Skills Section -->
     <section id="skills" class="skills-section">
         <div class="section-header">

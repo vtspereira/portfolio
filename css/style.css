@@ -2682,4 +2682,185 @@ footer p {
         padding: 0.3rem 0.7rem;
         font-size: 0.8rem;
     }
+}
+
+/* Experiência Profissional - Timeline Moderna */
+.modern-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.modern-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    height: calc(100% - 4rem);
+    width: 2px;
+    background-color: #4361ee;
+    opacity: 0.3;
+}
+
+@media (min-width: 768px) {
+    .modern-timeline::before {
+        left: 96px;
+    }
+}
+
+.modern-item {
+    position: relative;
+    padding-left: 40px;
+    padding-bottom: 40px;
+}
+
+.modern-item:last-child {
+    padding-bottom: 0;
+}
+
+@media (min-width: 768px) {
+    .modern-item {
+        padding-left: 128px;
+    }
+}
+
+.modern-dot {
+    position: absolute;
+    left: -5px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #4361ee;
+    z-index: 10;
+}
+
+@media (min-width: 768px) {
+    .modern-dot {
+        left: 95px;
+    }
+}
+
+.modern-date-badge {
+    position: absolute;
+    left: -10px;
+    top: 0;
+    background-color: #4361ee;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 4px;
+    z-index: 10;
+}
+
+.modern-date-badge::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: #4361ee;
+    transform: translateY(-50%) rotate(45deg);
+    z-index: -1;
+}
+
+@media (min-width: 768px) {
+    .modern-date-badge {
+        left: 64px;
+    }
+}
+
+.modern-content {
+    background-color: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-left: 4px solid #4361ee;
+}
+
+.dark-theme .modern-content {
+    background-color: #4f5d75;
+    color: #f8f9fa;
+}
+
+.modern-content:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.modern-company {
+    font-size: 20px;
+    font-weight: 700;
+    color: #4361ee;
+    margin-bottom: 4px;
+}
+
+.modern-role {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.dark-theme .modern-role {
+    color: #f8f9fa;
+}
+
+.modern-description {
+    color: #4f5d75;
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.dark-theme .modern-description {
+    color: #e9ecef;
+}
+
+.modern-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.modern-skill {
+    background-color: #f8f9fa;
+    color: #4f5d75;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+}
+
+.dark-theme .modern-skill {
+    background-color: #2b2d42;
+    color: #e9ecef;
+}
+
+.modern-skill:hover {
+    background-color: #4361ee;
+    color: white;
+}
+
+.linkedin-sync {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.linkedin-sync a {
+    display: flex;
+    align-items: center;
+    color: #4361ee;
+    transition: color 0.3s ease;
+}
+
+.linkedin-sync a:hover {
+    color: #3a0ca3;
+}
+
+.linkedin-sync i {
+    margin-right: 8px;
+    font-size: 20px;
 } 
