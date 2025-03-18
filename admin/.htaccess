@@ -1,5 +1,0 @@
-# Proteger diretório
-AuthType Basic
-AuthName "Área Restrita"
-AuthUserFile /c%3A/Users/vtspereira/source/personal/Portfolio/admin/.htpasswd
-Require valid-user 

@@ -1,5 +1,13 @@
 // Gerenciamento de tema (claro/escuro)
 document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar AOS (Animate on Scroll)
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: false,
+        mirror: true
+    });
+    
     const themeToggle = document.querySelector('.theme-toggle');
     const body = document.body;
     const themeIcon = document.querySelector('.theme-toggle i');
@@ -70,10 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
         new TypeWriter(txtElement, words, 3000);
     }
     
-    // Animar estatísticas quando a seção about ou experience estiver visível
+    // Animar estatísticas quando a seção about estiver visível
     const aboutSection = document.querySelector('.about-section');
-    const experienceSection = document.querySelector('.experience-section');
-    
     if (aboutSection) {
         const aboutObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -87,24 +93,14 @@ document.addEventListener('DOMContentLoaded', function() {
         aboutObserver.observe(aboutSection);
     }
     
-    if (experienceSection) {
-        const experienceObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateStats();
-                    experienceObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        experienceObserver.observe(experienceSection);
-    }
-    
     // Configurar scroll spy para destacar links de navegação ativos
     setupScrollSpy();
     
     // Configurar menu mobile
     setupMobileMenu();
+    
+    // Inicializar abas
+    setupTabs();
     
     // Adicionar evento de scroll
     window.addEventListener('scroll', handleScroll);
@@ -112,8 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar o scroll inicial para definir o estado do header
     handleScroll();
     
-    // Configurar as abas na seção Sobre Mim
-    setupTabs();
+    // Adicionar efeitos de mouse hover nos itens da seção Sobre Mim
+    setupAboutHoverEffects();
 });
 
 // Efeito de digitação para o texto do hero
@@ -173,7 +169,7 @@ class TypeWriter {
 
 // Animação para os números de estatísticas
 function animateStats() {
-    const stats = document.querySelectorAll('.stat-number, .summary-number');
+    const stats = document.querySelectorAll('.stat-number');
     
     stats.forEach(stat => {
         const target = parseInt(stat.getAttribute('data-target'));
@@ -245,6 +241,100 @@ function setupMobileMenu() {
     }
 }
 
+// Efeitos de mouse hover para elementos da seção Sobre Mim
+function setupAboutHoverEffects() {
+    // Adicionar brilho ao passar o mouse sobre os botões
+    const buttons = document.querySelectorAll('.download-cv-btn, .contact-btn');
+    
+    buttons.forEach(button => {
+        button.addEventListener('mousemove', (e) => {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left; // x position within the element
+            const y = e.clientY - rect.top;  // y position within the element
+            
+            button.style.setProperty('--x-pos', `${x}px`);
+            button.style.setProperty('--y-pos', `${y}px`);
+        });
+    });
+    
+    // Efeito 3D nos cards de educação
+    const educationItems = document.querySelectorAll('.education-item, .language-item');
+    
+    educationItems.forEach(item => {
+        item.addEventListener('mousemove', (e) => {
+            const rect = item.getBoundingClientRect();
+            const x = e.clientX - rect.left; 
+            const y = e.clientY - rect.top;
+            
+            const xRotation = ((y - rect.height / 2) / rect.height) * 5;
+            const yRotation = ((x - rect.width / 2) / rect.width) * -5;
+            
+            item.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg) scale(1.02)`;
+        });
+        
+        item.addEventListener('mouseout', () => {
+            item.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+        });
+    });
+    
+    // Efeito de movimento paralaxe na imagem do perfil
+    const profileImage = document.querySelector('.about-profile-image');
+    if (profileImage) {
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX / window.innerWidth - 0.5) * 10;
+            const moveY = (e.clientY / window.innerHeight - 0.5) * 10;
+            
+            profileImage.style.transform = `translateX(${moveX}px) translateY(${moveY}px)`;
+        });
+    }
+}
+
+// Abas na seção Sobre Mim
+function setupTabs() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remover classe active de todos os botões
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Adicionar classe active ao botão clicado
+            button.classList.add('active');
+            
+            // Ocultar todos os conteúdos
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                content.style.display = 'none';
+            });
+            
+            // Mostrar conteúdo correspondente com animação
+            const tabId = button.getAttribute('data-tab');
+            const targetContent = document.getElementById(tabId);
+            
+            targetContent.style.display = 'block';
+            
+            // Iniciar animação com atraso para permitir que o display: block seja aplicado
+            setTimeout(() => {
+                targetContent.classList.add('active');
+                
+                // Animar itens dentro da tab com efeito cascata
+                const items = targetContent.querySelectorAll('.education-item, .language-item');
+                items.forEach((item, index) => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        item.style.transition = 'all 0.5s ease';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100 * (index + 1));
+                });
+            }, 50);
+        });
+    });
+}
+
 // Navegação suave para links de âncora
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -287,31 +377,4 @@ window.addEventListener('scroll', () => {
     if (profileImage) {
         profileImage.style.transform = `translateY(${scrollPosition * 0.1}px)`;
     }
-});
-
-// Configurar as abas na seção Sobre Mim
-function setupTabs() {
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabPanels = document.querySelectorAll('.tab-panel');
-    
-    if (tabBtns.length > 0) {
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remover classe active de todos os botões
-                tabBtns.forEach(b => b.classList.remove('active'));
-                
-                // Adicionar classe active ao botão clicado
-                btn.classList.add('active');
-                
-                // Obter o id do painel a ser mostrado
-                const tabId = btn.getAttribute('data-tab');
-                
-                // Esconder todos os painéis
-                tabPanels.forEach(panel => panel.classList.remove('active'));
-                
-                // Mostrar o painel correspondente
-                document.getElementById(`${tabId}-tab`).classList.add('active');
-            });
-        });
-    }
-} 
+}); 
