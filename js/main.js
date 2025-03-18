@@ -432,9 +432,9 @@ function setupMobileNavigation() {
     
     if (!menuToggle || !navLinks || !navItems.length) return;
     
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        menuToggle.classList.toggle('active');
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
         body.classList.toggle('menu-open');
     });
     
@@ -641,7 +641,7 @@ window.addEventListener('scroll', () => {
     if (profileImage) {
         profileImage.style.transform = `translateY(${scrollPosition * 0.1}px)`;
     }
-});
+}); 
 
 // Timeline animation for experience section
 function initExperienceTimeline() {
