@@ -1,10 +1,18 @@
 // Gerenciamento de tema (claro/escuro)
 document.addEventListener('DOMContentLoaded', function() {
+    // Ajustar partículas para dispositivos móveis
+    if (window.innerWidth < 768) {
+        const particlesJS = document.getElementById('particles-js');
+        if (particlesJS) {
+            particlesJS.style.opacity = '0.2'; // Reduzir opacidade
+        }
+    }
+    
     // Inicializar AOS (Animate on Scroll) com configurações mais rápidas
     AOS.init({
         duration: 800, // Reduzindo a duração das animações
         easing: 'ease-in-out',
-        once: false, // Definindo como true para que a animação ocorra apenas uma vez
+        once: true, // Definindo como true para que a animação ocorra apenas uma vez
         mirror: false,
         disable: window.innerWidth < 768 // Desativar em dispositivos móveis
     });
@@ -415,30 +423,42 @@ function setupScrollSpy() {
     });
 }
 
-// Mobile navigation
+// Versão aprimorada de Mobile navigation
 function setupMobileNavigation() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     const navItems = document.querySelectorAll('.nav-links a');
+    const body = document.body;
     
     if (!menuToggle || !navLinks || !navItems.length) return;
     
     menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
         menuToggle.classList.toggle('active');
-        document.body.classList.toggle('no-scroll');
+        body.classList.toggle('menu-open');
     });
     
-    // Close menu when clicking on a link
+    // Fechar menu ao clicar em qualquer área fora
+    document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('active') && 
+            !navLinks.contains(e.target) && 
+            !menuToggle.contains(e.target)) {
+            navLinks.classList.remove('active');
+            menuToggle.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
+    });
+    
+    // Fechar menu quando clicar em um link
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             navLinks.classList.remove('active');
             menuToggle.classList.remove('active');
-            document.body.classList.remove('no-scroll');
+            body.classList.remove('menu-open');
         });
     });
     
-    // Highlight active section on scroll
+    // Adicionar classe 'active' ao link correspondente à seção visível
     window.addEventListener('scroll', () => {
         const sections = ['home', 'about', 'experience', 'skills', 'projects', 'testimonial', 'contact'];
         let current = '';
@@ -448,6 +468,7 @@ function setupMobileNavigation() {
             if (!element) return;
             
             const rect = element.getBoundingClientRect();
+            // Ajuste para considerar uma seção visível
             if (rect.top <= 100 && rect.bottom >= 100) {
                 current = section;
             }
