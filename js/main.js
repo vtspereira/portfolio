@@ -1,11 +1,12 @@
 // Gerenciamento de tema (claro/escuro)
 document.addEventListener('DOMContentLoaded', function() {
-    // Inicializar AOS (Animate on Scroll)
+    // Inicializar AOS (Animate on Scroll) com configurações mais rápidas
     AOS.init({
-        duration: 800,
+        duration: 800, // Reduzindo a duração das animações
         easing: 'ease-in-out',
-        once: false,
-        mirror: true
+        once: false, // Definindo como true para que a animação ocorra apenas uma vez
+        mirror: false,
+        disable: window.innerWidth < 768 // Desativar em dispositivos móveis
     });
     
     const themeToggle = document.querySelector('.theme-toggle');
@@ -33,6 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
             themeIcon.classList.add('bx-moon');
         }
         localStorage.setItem('theme', theme);
+        
+        // Ajustar cores para elementos específicos com base no tema
+        updateThemeSpecificElements(theme);
     };
     
     // Alternar tema
@@ -48,6 +52,86 @@ document.addEventListener('DOMContentLoaded', function() {
     // Adicionar evento de clique ao botão de tema
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
+    }
+    
+    // Atualizar elementos específicos por tema
+    function updateThemeSpecificElements(theme) {
+        // Código de bloco do hero - atualizar borda e cor de fundo
+        const codeBlock = document.querySelector('.hero-code-block');
+        if (codeBlock) {
+            if (theme === 'light') {
+                codeBlock.style.borderColor = 'var(--border)';
+                codeBlock.style.background = 'rgba(249, 249, 249, 0.8)';
+            } else {
+                codeBlock.style.borderColor = 'var(--border)';
+                codeBlock.style.background = 'rgba(30, 30, 30, 0.8)';
+            }
+        }
+        
+        // Atualizar o fundo das seções de acordo com o tema
+        const heroSection = document.querySelector('.hero-section');
+        const testimonialSection = document.querySelector('.testimonial-section');
+        const particlesJS = document.querySelector('#particles-js');
+        
+        if (heroSection) {
+            heroSection.style.backgroundColor = `var(--bg-primary)`;
+        }
+        
+        if (testimonialSection) {
+            testimonialSection.style.backgroundColor = `var(--bg-primary)`;
+        }
+        
+        if (particlesJS) {
+            particlesJS.style.backgroundColor = `var(--bg-primary)`;
+        }
+        
+        // Ajustar ícones de tecnologia
+        const techIcons = document.querySelectorAll('.tech-icon');
+        if (techIcons.length > 0) {
+            techIcons.forEach(icon => {
+                if (theme === 'light') {
+                    icon.style.background = 'var(--bg-secondary)';
+                    icon.style.boxShadow = 'var(--shadow-sm)';
+                } else {
+                    icon.style.background = 'var(--bg-tertiary)';
+                    icon.style.boxShadow = 'var(--shadow-sm)';
+                }
+            });
+        }
+        
+        // Ajustar cores dos cards de habilidades
+        const skillCards = document.querySelectorAll('.skill-card');
+        if (skillCards.length > 0) {
+            skillCards.forEach(card => {
+                if (theme === 'light') {
+                    card.style.background = 'var(--bg-secondary)';
+                } else {
+                    card.style.background = 'var(--bg-tertiary)';
+                }
+            });
+        }
+        
+        // Ajustar cor de fundo da imagem de perfil
+        const profileBackdrop = document.querySelector('.profile-backdrop');
+        if (profileBackdrop) {
+            if (theme === 'light') {
+                profileBackdrop.style.background = 'var(--primary-light)';
+                profileBackdrop.style.opacity = '0.15';
+            } else {
+                profileBackdrop.style.background = 'var(--primary)';
+                profileBackdrop.style.opacity = '0.2';
+            }
+        }
+        
+        // Tema no botão de alternância
+        const themeToggle = document.querySelector('.theme-toggle');
+        if (themeToggle) {
+            if (theme === 'light') {
+                themeToggle.style.background = 'var(--bg-secondary)';
+            } else {
+                themeToggle.style.background = 'var(--bg-tertiary)';
+            }
+        }
     }
     
     // Observador de interseção para animações de entrada
@@ -70,6 +154,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.animate-on-scroll').forEach(el => {
         observer.observe(el);
     });
+
+    // Efeito de parallax para os círculos de fundo (otimizado)
+    // Desativar em dispositivos móveis para melhor performance
+    if (window.innerWidth > 768) {
+        setupParallaxEffect();
+    }
     
     // Efeito de digitação para o texto do hero
     const txtElement = document.querySelector('.hero-title-item');
@@ -97,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupScrollSpy();
     
     // Configurar menu mobile
-    setupMobileMenu();
+    setupMobileNavigation();
     
     // Inicializar abas
     setupTabs();
@@ -109,8 +199,113 @@ document.addEventListener('DOMContentLoaded', function() {
     handleScroll();
     
     // Adicionar efeitos de mouse hover nos itens da seção Sobre Mim
-    setupAboutHoverEffects();
+    // Desativar em dispositivos móveis para melhor performance
+    if (window.innerWidth > 768) {
+        setupAboutHoverEffects();
+    }
+    
+    // Adicionar efeito de luz nos botões e cards
+    // Desativar em dispositivos móveis para melhor performance
+    if (window.innerWidth > 768) {
+        setupLightEffects();
+    }
+    
+    // Initialize experience timeline animation
+    initExperienceTimeline();
 });
+
+// Configurar efeito parallax (otimizado)
+function setupParallaxEffect() {
+    const parallaxElements = document.querySelectorAll('.parallax-circle');
+    
+    // Usando uma abordagem mais eficiente com throttling para limitar as chamadas
+    let lastScrollPosition = 0;
+    let ticking = false;
+    
+    window.addEventListener('mousemove', (e) => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const x = e.clientX;
+                const y = e.clientY;
+                
+                // Velocidade do efeito reduzida
+                const speed = 0.03;
+                
+                parallaxElements.forEach(element => {
+                    // Mover o elemento com base na posição do mouse (simplificado)
+                    const moveX = (x - window.innerWidth / 2) * speed;
+                    const moveY = (y - window.innerHeight / 2) * speed;
+                    
+                    element.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                });
+                
+                ticking = false;
+            });
+            
+            ticking = true;
+        }
+    });
+}
+
+// Adicionar efeito de luz nos botões (otimizado)
+function setupLightEffects() {
+    // Efeito de luz que segue o cursor nos botões e cards com hover-glow
+    const hoverElements = document.querySelectorAll('.hover-glow, .primary-btn, .secondary-btn, .download-cv-btn, .contact-btn, .social-links a');
+    
+    // Limitar a frequência de atualização para melhorar o desempenho
+    let throttleTimer;
+    
+    hoverElements.forEach(element => {
+        element.addEventListener('mousemove', e => {
+            if (!throttleTimer) {
+                throttleTimer = setTimeout(() => {
+                    const rect = element.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    // Coordenadas em percentagem da largura/altura do elemento
+                    const xPercent = Math.round(x / rect.width * 100);
+                    const yPercent = Math.round(y / rect.height * 100);
+                    
+                    // Atualizar variáveis CSS para controlar a posição do gradiente radial
+                    element.style.setProperty('--x-pos', `${xPercent}%`);
+                    element.style.setProperty('--y-pos', `${yPercent}%`);
+                    
+                    throttleTimer = null;
+                }, 50); // Limitar a 20 atualizações por segundo
+            }
+        });
+    });
+    
+    // Efeito para os cards - versão mais leve
+    const liftElements = document.querySelectorAll('.hover-lift');
+    
+    liftElements.forEach(element => {
+        element.addEventListener('mousemove', e => {
+            if (!throttleTimer) {
+                throttleTimer = setTimeout(() => {
+                    const rect = element.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    // Rotação mais sutil
+                    const xRotation = ((rect.height / 2 - y) / 50);
+                    const yRotation = ((x - rect.width / 2) / 50);
+                    
+                    // Aplicar transformação mais leve
+                    element.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg) translateY(-3px)`;
+                    
+                    throttleTimer = null;
+                }, 50);
+            }
+        });
+        
+        // Resetar a transformação quando o mouse sair
+        element.addEventListener('mouseleave', () => {
+            element.style.transform = 'none';
+        });
+    });
+}
 
 // Efeito de digitação para o texto do hero
 class TypeWriter {
@@ -220,76 +415,94 @@ function setupScrollSpy() {
     });
 }
 
-// Configurar menu mobile
-function setupMobileMenu() {
+// Mobile navigation
+function setupMobileNavigation() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-links a');
     
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
-        
-        // Fechar menu ao clicar em um link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
-            });
-        });
-    }
-}
-
-// Efeitos de mouse hover para elementos da seção Sobre Mim
-function setupAboutHoverEffects() {
-    // Adicionar brilho ao passar o mouse sobre os botões
-    const buttons = document.querySelectorAll('.download-cv-btn, .contact-btn');
+    if (!menuToggle || !navLinks || !navItems.length) return;
     
-    buttons.forEach(button => {
-        button.addEventListener('mousemove', (e) => {
-            const rect = button.getBoundingClientRect();
-            const x = e.clientX - rect.left; // x position within the element
-            const y = e.clientY - rect.top;  // y position within the element
-            
-            button.style.setProperty('--x-pos', `${x}px`);
-            button.style.setProperty('--y-pos', `${y}px`);
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+    });
+    
+    // Close menu when clicking on a link
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.classList.remove('no-scroll');
         });
     });
     
-    // Efeito 3D nos cards de educação
+    // Highlight active section on scroll
+    window.addEventListener('scroll', () => {
+        const sections = ['home', 'about', 'experience', 'skills', 'projects', 'testimonial', 'contact'];
+        let current = '';
+        
+        sections.forEach(section => {
+            const element = document.getElementById(section);
+            if (!element) return;
+            
+            const rect = element.getBoundingClientRect();
+            if (rect.top <= 100 && rect.bottom >= 100) {
+                current = section;
+            }
+        });
+        
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (current && item.getAttribute('href') === `#${current}`) {
+                item.classList.add('active');
+            }
+        });
+    });
+}
+
+// Efeitos de mouse hover para elementos da seção Sobre Mim (otimizado)
+function setupAboutHoverEffects() {
+    // Efeito 3D mais leve nos cards de educação
     const educationItems = document.querySelectorAll('.education-item, .language-item');
     
     educationItems.forEach(item => {
-        item.addEventListener('mousemove', (e) => {
-            const rect = item.getBoundingClientRect();
-            const x = e.clientX - rect.left; 
-            const y = e.clientY - rect.top;
-            
-            const xRotation = ((y - rect.height / 2) / rect.height) * 5;
-            const yRotation = ((x - rect.width / 2) / rect.width) * -5;
-            
-            item.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg) scale(1.02)`;
+        item.addEventListener('mouseenter', () => {
+            // Usando uma transformação simples em vez de 3D complexa
+            item.style.transform = 'translateY(-5px)';
+            item.style.boxShadow = '0 10px 20px var(--shadow)';
         });
         
-        item.addEventListener('mouseout', () => {
-            item.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+        item.addEventListener('mouseleave', () => {
+            item.style.transform = 'none';
+            item.style.boxShadow = 'none';
         });
     });
     
-    // Efeito de movimento paralaxe na imagem do perfil
+    // Efeito simples para a imagem de perfil
     const profileImage = document.querySelector('.about-profile-image');
     if (profileImage) {
+        // Limitando o evento mousemove para melhorar performance
+        let profileImageThrottle;
+        
         document.addEventListener('mousemove', (e) => {
-            const moveX = (e.clientX / window.innerWidth - 0.5) * 10;
-            const moveY = (e.clientY / window.innerHeight - 0.5) * 10;
-            
-            profileImage.style.transform = `translateX(${moveX}px) translateY(${moveY}px)`;
+            if (!profileImageThrottle) {
+                profileImageThrottle = setTimeout(() => {
+                    // Movimento mais sutil
+                    const moveX = (e.clientX / window.innerWidth - 0.5) * 5;
+                    const moveY = (e.clientY / window.innerHeight - 0.5) * 5;
+                    
+                    profileImage.style.transform = `translateX(${moveX}px) translateY(${moveY}px)`;
+                    
+                    profileImageThrottle = null;
+                }, 100); // Atualizando apenas 10 vezes por segundo
+            }
         });
     }
 }
 
-// Abas na seção Sobre Mim
+// Abas na seção Sobre Mim (sem scroll)
 function setupTabs() {
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -314,22 +527,24 @@ function setupTabs() {
             
             targetContent.style.display = 'block';
             
-            // Iniciar animação com atraso para permitir que o display: block seja aplicado
+            // Iniciar animação mais simples e remover restrições de scroll
             setTimeout(() => {
                 targetContent.classList.add('active');
+                targetContent.style.overflow = 'visible';
+                targetContent.style.maxHeight = 'none';
                 
-                // Animar itens dentro da tab com efeito cascata
+                // Animação mais simples para os itens
                 const items = targetContent.querySelectorAll('.education-item, .language-item');
-                items.forEach((item, index) => {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
-                    
-                    setTimeout(() => {
-                        item.style.transition = 'all 0.5s ease';
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    }, 100 * (index + 1));
+                items.forEach(item => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'none';
                 });
+                
+                // Ajustar altura do container se necessário
+                const aboutContainer = document.querySelector('.about-container');
+                if (aboutContainer) {
+                    aboutContainer.style.height = 'auto';
+                }
             }, 50);
         });
     });
@@ -362,6 +577,34 @@ function handleScroll() {
             header.classList.remove('scrolled');
         }
     }
+    
+    // Otimização do efeito parallax ao rolar - usando throttle
+    let scrollThrottle;
+    if (!scrollThrottle) {
+        scrollThrottle = setTimeout(() => {
+            const scrollPosition = window.scrollY;
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                // Aplicar efeito parallax mais suave
+                const parallaxBg = section.querySelector('.parallax-bg');
+                if (parallaxBg) {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    // Verificar se a seção está visível
+                    if (scrollPosition > sectionTop - window.innerHeight && 
+                        scrollPosition < sectionTop + sectionHeight) {
+                        // Deslocamento mais sutil
+                        const yOffset = (scrollPosition - sectionTop) * 0.1;
+                        parallaxBg.style.transform = `translateY(${yOffset}px)`;
+                    }
+                }
+            });
+            
+            scrollThrottle = null;
+        }, 50); // Limitar a 20 atualizações por segundo
+    }
 }
 
 // Efeito de parallax para o hero section
@@ -377,4 +620,32 @@ window.addEventListener('scroll', () => {
     if (profileImage) {
         profileImage.style.transform = `translateY(${scrollPosition * 0.1}px)`;
     }
-}); 
+});
+
+// Timeline animation for experience section
+function initExperienceTimeline() {
+    const experienceSection = document.querySelector('.experience-section');
+    const experienceItems = document.querySelectorAll('.experience-item');
+    
+    if (!experienceSection || experienceItems.length === 0) return;
+    
+    const animateTimeline = () => {
+        const sectionTop = experienceSection.getBoundingClientRect().top;
+        const triggerPoint = window.innerHeight * 0.8;
+        
+        if (sectionTop < triggerPoint) {
+            experienceSection.classList.add('in-view');
+            
+            experienceItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('animate');
+                }, 300 * index);
+            });
+            
+            window.removeEventListener('scroll', animateTimeline);
+        }
+    };
+    
+    window.addEventListener('scroll', animateTimeline);
+    animateTimeline(); // Check on load
+} 

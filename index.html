@@ -34,16 +34,17 @@
     <header>
         <nav>
             <div class="logo">
-                <a href="#">VP</a>
+                <a href="#home">Vitor</a>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Início</a></li>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#skills">Habilidades</a></li>
-                <li><a href="#projects">Projetos</a></li>
-                <li><a href="#testimonial">Recomendações</a></li>
-                <li><a href="#contact">Contato</a></li>
-            </ul>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">Sobre</a>
+                <a href="#experience">Experiência</a>
+                <a href="#skills">Habilidades</a>
+                <a href="#projects">Projetos</a>
+                <a href="#testimonial">Recomendações</a>
+                <a href="#contact">Contato</a>
+            </div>
             <div class="menu-toggle">
                 <i class='bx bx-menu'></i>
             </div>
@@ -54,34 +55,33 @@
     <section id="home" class="hero-section">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-left">
+                <div class="hero-left" data-aos="fade-right">
                     <p class="hero-greeting">Olá, eu sou</p>
                     <h1 class="hero-name">Vitor <span>Soares Pereira</span></h1>
                     <div class="hero-title">
                         <div class="hero-title-wrapper">
-                            <div class="hero-title-item">Desenvolvedor Full Stack</div>
-                            <div class="hero-title-item">Arquiteto de Software</div>
+                            <div class="hero-title-item">Desenvolvedor FullStack</div>
                             <div class="hero-title-item">Especialista em .NET</div>
                             <div class="hero-title-item">Entusiasta de DevOps</div>
                         </div>
                     </div>
                     <p class="hero-description">
-                        Desenvolvedor apaixonado com mais de 8 anos de experiência criando soluções robustas e escaláveis. Especializado em .NET, Angular e arquitetura de software.
+                        Especialista em desenvolvimento de aplicações web modernas e escaláveis, com foco em tecnologias .NET, Angular e Cloud. Experiência em projetos de diferentes setores, incluindo sistemas de gestão empresarial e integrações com SAP.
                     </p>
                     <div class="hero-cta">
-                        <a href="#contact" class="primary-btn">Entre em contato</a>
-                        <a href="#projects" class="secondary-btn">Ver projetos <i class='bx bx-right-arrow-alt'></i></a>
+                        <a href="#contact" class="primary-btn hover-lift">Entre em contato</a>
+                        <a href="#projects" class="secondary-btn hover-lift">Ver projetos <i class='bx bx-right-arrow-alt'></i></a>
                     </div>
                     <div class="hero-social" style="margin-top: 2rem; display: flex; gap: 1rem;">
-                        <a href="https://github.com/vtspereira" target="_blank" class="social-icon" aria-label="GitHub">
+                        <a href="https://github.com/vtspereira" target="_blank" class="social-icon hover-scale" aria-label="GitHub">
                             <i class='bx bxl-github' style="font-size: 1.8rem; color: var(--text-primary);"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/vtspereira/" target="_blank" class="social-icon" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/in/vtspereira/" target="_blank" class="social-icon hover-scale" aria-label="LinkedIn">
                             <i class='bx bxl-linkedin-square' style="font-size: 1.8rem; color: #0077B5;"></i>
                         </a>
                     </div>
                 </div>
-                <div class="hero-right">
+                <div class="hero-right" data-aos="fade-left">
                     <div class="hero-image-container">
                         <div class="hero-blob"></div>
                         <div class="hero-image">
@@ -134,13 +134,19 @@ class Desenvolvedor {
     </section>
     
     <!-- About Section -->
-    <section id="about" class="about-section" data-aos="fade-up">
+    <section id="about" class="about-section no-scroll">
+        <!-- Efeito parallax para fundo - simplificado -->
+        <div class="parallax-bg">
+            <div class="parallax-circle parallax-circle-1"></div>
+            <div class="parallax-circle parallax-circle-2"></div>
+        </div>
+
         <div class="about-container">
-            <h2 class="section-title" data-aos="fade-down">Sobre Mim</h2>
-            <div class="section-line" data-aos="zoom-in" data-aos-delay="200"></div>
+            <h2 class="section-title">Sobre Mim</h2>
+            <div class="section-line"></div>
 
             <div class="about-content">
-                <div class="about-profile" data-aos="fade-right" data-aos-delay="300">
+                <div class="about-profile">
                     <div class="about-profile-image">
                         <div class="profile-backdrop"></div>
                         <img src="assets/vitinho.png" alt="Meu avatar" class="profile-avatar" />
@@ -151,7 +157,7 @@ class Desenvolvedor {
                     </div>
                 </div>
                 
-                <div class="about-info" data-aos="fade-left" data-aos-delay="400">
+                <div class="about-info">
                     <div class="about-tabs">
                         <button class="tab-button active" data-tab="formacao">
                             <i class='bx bx-book-open'></i>
@@ -164,9 +170,9 @@ class Desenvolvedor {
                     </div>
                     
                     <div class="tab-content active" id="formacao">
-                        <div class="education-item" data-aos="fade-up">
+                        <div class="education-item">
                             <div class="education-icon">
-                                <i class='bx bx-code-alt'></i>
+                                <i class='bx bx-rocket'></i>
                             </div>
                             <div class="education-details">
                                 <h3>Pós-graduação Tech developer 360</h3>
@@ -175,9 +181,9 @@ class Desenvolvedor {
                             </div>
                         </div>
                         
-                        <div class="education-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="education-item">
                             <div class="education-icon">
-                                <i class='bx bx-briefcase'></i>
+                                <i class='bx bx-rocket'></i>
                             </div>
                             <div class="education-details">
                                 <h3>MBA Fullstack</h3>
@@ -186,20 +192,20 @@ class Desenvolvedor {
                             </div>
                         </div>
                         
-                        <div class="education-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="education-item">
                             <div class="education-icon">
-                                <i class='bx bx-server'></i>
+                                <i class='bx bx-buildings'></i>
                             </div>
                             <div class="education-details">
                                 <h3>Análise e Desenvolvimento de Sistemas</h3>
-                                <h4>Universidade Positivo</h4>
+                                <h4>Universidade Cruzeiro do Sul</h4>
                                 <span class="education-year">2018 - 2021</span>
                             </div>
                         </div>
                     </div>
                     
                     <div class="tab-content" id="certificacoes">
-                        <div class="language-item" data-aos="fade-up">
+                        <div class="language-item">
                             <div class="language-icon">
                                 <i class='bx bx-globe'></i>
                             </div>
@@ -215,7 +221,7 @@ class Desenvolvedor {
                 </div>
             </div>
             
-            <div class="about-cta" data-aos="zoom-in" data-aos-delay="500">
+            <div class="about-cta">
                 <a href="assets/Vitor Soares Pereira.pdf" download class="download-cv-btn">
                     <i class='bx bx-download'></i> Download CV
                 </a>
@@ -225,71 +231,186 @@ class Desenvolvedor {
             </div>
         </div>
     </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience-section">
+        <!-- Efeito parallax para fundo -->
+        <div class="parallax-bg">
+            <div class="parallax-circle parallax-circle-1"></div>
+            <div class="parallax-circle parallax-circle-2"></div>
+        </div>
+
+        <div class="section-title" data-aos="fade-down">
+            <h2>Experiência Profissional</h2>
+            <div class="section-line"></div>
+        </div>
+        
+        <div class="experience-container">
+            <div class="experience-timeline">
+                <!-- Smart One -->
+                <div class="experience-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="experience-dot"></div>
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <h3 class="experience-role">Desenvolvedor Fullstack</h3>
+                            <div class="experience-company">
+                                <span>Smart One Soluções Empresariais</span>
+                                <span class="experience-date">Outubro 2023 - Presente</span>
+                            </div>
+                        </div>
+                        <div class="experience-description">
+                            <p>Responsável pela manutenção e sustentabilidade das integrações da empresa que usam o SAP BI for HANA/SQL. Meu foco principal é otimizar o fluxo de compras e o controle de estoque, garantindo eficiência e confiabilidade. Trabalho na identificação e resolução de problemas, além de desenvolver melhorias contínuas para essas integrações.</p>
+                            <p>Também ajudo na reestruturação do projeto principal da empresa, propondo novas arquiteturas, ferramentas e otimização do projeto legado.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wiser Educação -->
+                <div class="experience-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="experience-dot"></div>
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <h3 class="experience-role">Tech Leader/Desenvolvedor</h3>
+                            <div class="experience-company">
+                                <span>Wiser Educação</span>
+                                <span class="experience-date">Outubro 2021 - Outubro 2023</span>
+                            </div>
+                        </div>
+                        <div class="experience-description">
+                            <p>Responsável pelas integrações entre CRMs da empresa e o SAP BI for HANA/SQL. À frente do projeto de reestruturação da TI Back/Office, propondo e implementando novas arquiteturas, ferramentas e migração de sistemas legados. Responsável por garantir a integridade de algumas integrações e ambientes, qualidade e versionamento de códigos.</p>
+                            <h4 class="experience-subtitle">Realizações:</h4>
+                            <ul class="experience-list">
+                                <li><i class='bx bx-check-circle'></i> Migrações de sistemas legados</li>
+                                <li><i class='bx bx-check-circle'></i> Implementação de mensageria</li>
+                                <li><i class='bx bx-check-circle'></i> Implementação de Patterns e boas práticas</li>
+                                <li><i class='bx bx-check-circle'></i> Treinamento de novos desenvolvedores</li>
+                                <li><i class='bx bx-check-circle'></i> Revisão de código de outros desenvolvedores</li>
+                                <li><i class='bx bx-check-circle'></i> Homologação das atividades de desenvolvimento</li>
+                                <li><i class='bx bx-check-circle'></i> Criar e projetar documentações técnicas e funcionais</li>
+                                <li><i class='bx bx-check-circle'></i> Reuniões com área de negócio</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BRG Educacional -->
+                <div class="experience-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="experience-dot"></div>
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <h3 class="experience-role">Desenvolvedor Fullstack</h3>
+                            <div class="experience-company">
+                                <span>BRG Educacional</span>
+                                <span class="experience-date">Agosto 2020 - Setembro 2021</span>
+                            </div>
+                        </div>
+                        <div class="experience-description">
+                            <p>Um dos responsáveis pelo desenvolvimento de projetos da empresa, utilizando as tecnologias C#, VueJS, Banco de dados PostgreSQL, integrando à gestão através de metodologias ágeis.</p>
+                            <h4 class="experience-subtitle">Realizações:</h4>
+                            <ul class="experience-list">
+                                <li><i class='bx bx-check-circle'></i> Desenvolvimento de uma plataforma voltada para orientação de carreira, tendo como propósito o aprimoramento de hard e soft skills contendo sugestões de cursos, livros, artigos e podcasts</li>
+                                <li><i class='bx bx-check-circle'></i> Responsável técnico e desenvolvedor de um sistema para auxílio de escolha de cursos e instituições de ensino superior(Pós-Graduação)</li>
+                                <li><i class='bx bx-check-circle'></i> Melhorias nos principais projetos da empresa</li>
+                                <li><i class='bx bx-check-circle'></i> Atualização de querys no banco PostgreSQL</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estágio Santo Anjo -->
+                <div class="experience-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="experience-dot"></div>
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <h3 class="experience-role">Estagiário Web</h3>
+                            <div class="experience-company">
+                                <span>Colégio Santo Anjo</span>
+                                <span class="experience-date">Março 2019 - Novembro 2019</span>
+                            </div>
+                        </div>
+                        <div class="experience-description">
+                            <ul class="experience-list">
+                                <li><i class='bx bx-check-circle'></i> Auxiliar no suporte aos usuários</li>
+                                <li><i class='bx bx-check-circle'></i> Manutenção de software interno, utilizando a linguagem .NET, com a finalidade de reduzir consideravelmente as horas prestadas pelos funcionários</li>
+                                <li><i class='bx bx-check-circle'></i> Projeto externo: Realizado na aplicação WordPress onde foi adicionado/alterado diversas funcionalidades com PHP</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <!-- Skills Section -->
     <section id="skills" class="skills-section">
-        <div class="section-header">
+        <!-- Efeito parallax para fundo -->
+        <div class="parallax-bg">
+            <div class="parallax-circle parallax-circle-1"></div>
+            <div class="parallax-circle parallax-circle-2"></div>
+        </div>
+
+        <div class="section-title" data-aos="fade-down">
             <h2>Tecnologias</h2>
             <div class="section-line"></div>
         </div>
         
         <!-- Front-end -->
-        <div class="skills-category">
+        <div class="skills-category" data-aos="fade-up">
             <h3><i class='bx bx-laptop'></i> Front-end</h3>
             <div class="skills-grid">
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="100">
                     <img src="https://angular.io/assets/images/logos/angular/angular.svg" alt="angular"/>
                     <span>Angular</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="150">
                     <img src="https://www.vectorlogo.zone/logos/babeljs/babeljs-icon.svg" alt="babel"/>
                     <span>Babel</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="200">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap"/>
                     <span>Bootstrap</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="250">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3"/>
                     <span>CSS3</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="300">
                     <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma"/>
                     <span>Figma</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="350">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5"/>
                     <span>HTML5</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="400">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript"/>
                     <span>JavaScript</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="450">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react"/>
                     <span>React</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="500">
                     <img src="https://reactnative.dev/img/header_logo.svg" alt="reactnative"/>
                     <span>React Native</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="550">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg" alt="sass"/>
                     <span>Sass</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="600">
                     <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="tailwind"/>
                     <span>Tailwind</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="650">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript"/>
                     <span>TypeScript</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="700">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vuejs/vuejs-original-wordmark.svg" alt="vuejs"/>
                     <span>Vue.js</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="750">
                     <img src="https://bestofjs.org/logos/vuetify.svg" alt="vuetify"/>
                     <span>Vuetify</span>
                 </div>
@@ -297,74 +418,74 @@ class Desenvolvedor {
         </div>
 
         <!-- Back-end -->
-        <div class="skills-category">
+        <div class="skills-category" data-aos="fade-up">
             <h3><i class='bx bx-server'></i> Back-end</h3>
             <div class="skills-grid">
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="100">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dot-net/dot-net-original-wordmark.svg" alt="dotnet"/>
                     <span>.NET</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="150">
                     <img src="https://www.vectorlogo.zone/logos/elastic/elastic-icon.svg" alt="elasticsearch"/>
                     <span>Elasticsearch</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="200">
                     <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" alt="gcp"/>
                     <span>GCP</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="250">
                     <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku"/>
                     <span>Heroku</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="300">
                     <img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" alt="jenkins"/>
                     <span>Jenkins</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="350">
                     <img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" alt="kubernetes"/>
                     <span>Kubernetes</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="400">
                     <img src="https://www.svgrepo.com/show/303229/microsoft-sql-server-logo.svg" alt="mssql"/>
                     <span>SQL Server</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="450">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql"/>
                     <span>MySQL</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="500">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nestjs/nestjs-plain.svg" alt="nestjs"/>
                     <span>NestJS</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="550">
                     <img src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" alt="nextjs"/>
                     <span>Next.js</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="600">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nginx/nginx-original.svg" alt="nginx"/>
                     <span>Nginx</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="650">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs"/>
                     <span>Node.js</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="700">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/oracle/oracle-original.svg" alt="oracle"/>
                     <span>Oracle</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="750">
                     <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman"/>
                     <span>Postman</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="800">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redis/redis-original-wordmark.svg" alt="redis"/>
                     <span>Redis</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="850">
                     <img src="https://www.vectorlogo.zone/logos/sqlite/sqlite-icon.svg" alt="sqlite"/>
                     <span>SQLite</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="900">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/d00d0969292a6569d45b06d3f350f463a0107b0d/icons/webpack/webpack-original-wordmark.svg" alt="webpack"/>
                     <span>Webpack</span>
                 </div>
@@ -372,26 +493,26 @@ class Desenvolvedor {
         </div>
 
         <!-- DevOps & Tools -->
-        <div class="skills-category">
+        <div class="skills-category" data-aos="fade-up">
             <h3><i class='bx bx-wrench'></i> DevOps & Ferramentas</h3>
             <div class="skills-grid">
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="100">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws"/>
                     <span>AWS</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="150">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker"/>
                     <span>Docker</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="200">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original-wordmark.svg" alt="git"/>
                     <span>Git</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="250">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original-wordmark.svg" alt="github"/>
                     <span>GitHub</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card hover-lift" data-aos="zoom-in" data-aos-delay="300">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux"/>
                     <span>Linux</span>
                 </div>
@@ -401,11 +522,19 @@ class Desenvolvedor {
 
     <!-- Projects Section -->
     <section id="projects" class="projects-section">
-        <div class="section-title">
-            <h2>Projetos em Destaque</h2>
+        <!-- Efeito parallax para fundo -->
+        <div class="parallax-bg">
+            <div class="parallax-circle parallax-circle-1"></div>
+            <div class="parallax-circle parallax-circle-2"></div>
         </div>
+
+        <div class="section-title" data-aos="fade-down">
+            <h2>Projetos</h2>
+            <div class="section-line"></div>
+        </div>
+        
         <div class="portfolio-grid">
-            <div class="portfolio-item">
+            <div class="portfolio-item hover-lift" data-aos="fade-up" data-aos-delay="100">
                 <div class="portfolio-image">
                     <i class='bx bx-code-alt' style="font-size: 3rem; color: var(--primary);"></i>
                 </div>
@@ -418,10 +547,10 @@ class Desenvolvedor {
                         <span>HTML5</span>
                         <span>CSS3</span>
                     </div>
-                    <a href="https://github.com/vtspereira/Code-Drops" class="view-more" target="_blank">Ver Projeto</a>
+                    <a href="https://github.com/vtspereira/Code-Drops" class="view-more hover-lift">Ver Projeto</a>
                 </div>
             </div>
-            <div class="portfolio-item">
+            <div class="portfolio-item hover-lift" data-aos="fade-up" data-aos-delay="200">
                 <div class="portfolio-image">
                     <i class='bx bx-donate-heart' style="font-size: 3rem; color: var(--primary);"></i>
                 </div>
@@ -435,52 +564,63 @@ class Desenvolvedor {
                         <span>Node.js</span>
                         <span>SQLite</span>
                     </div>
-                    <a href="https://github.com/vtspereira/be-the-hero" class="view-more" target="_blank">Ver Projeto</a>
+                    <a href="https://github.com/vtspereira/be-the-hero" class="view-more hover-lift">Ver Projeto</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonial Section -->
-    <section id="testimonial" class="testimonial">
-        <div class="testimonial-header">
-            <h2>Recomendações do LinkedIn</h2>
-            <div class="testimonial-controls">
-                <span id="last-sync-status">Última sincronização: Nunca</span>
-                <button id="refresh-testimonials" class="refresh-button">
-                    <i class='bx bx-refresh'></i> Atualizar
-                </button>
-            </div>
+    <section id="testimonial" class="testimonial-section">
+        <!-- Efeito parallax para fundo -->
+        <div class="parallax-bg">
+            <div class="parallax-circle parallax-circle-1"></div>
+            <div class="parallax-circle parallax-circle-2"></div>
         </div>
-        <div id="testimonial-container" class="testimonial-container">
-            <!-- O conteúdo do carrossel será carregado dinamicamente via JavaScript -->
+
+        <div class="section-title" data-aos="fade-down">
+            <h2>Recomendações</h2>
+            <div class="section-line"></div>
+        </div>
+        
+        <div class="testimonials-container" id="testimonials-container">
+            <!-- Os itens de recomendação serão carregados dinamicamente via JavaScript -->
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
-        <div class="section-title">
-            <h2>Contato</h2>
+        <!-- Efeito parallax para fundo -->
+        <div class="parallax-bg">
+            <div class="parallax-circle parallax-circle-1"></div>
+            <div class="parallax-circle parallax-circle-2"></div>
         </div>
+
+        <div class="section-title" data-aos="fade-down">
+            <h2>Contato</h2>
+            <div class="section-line"></div>
+        </div>
+        
         <div class="contact-info">
-            <div class="info-item">
+            <div class="info-item hover-lift" data-aos="fade-up" data-aos-delay="100">
                 <i class='bx bx-envelope'></i>
                 <p>dev.vtspereira@gmail.com</p>
             </div>
-            <div class="info-item">
+            <div class="info-item hover-lift" data-aos="fade-up" data-aos-delay="200">
                 <i class='bx bx-map'></i>
                 <p>Curitiba, Paraná</p>
             </div>
         </div>
-        <div class="social-links">
-            <a href="https://github.com/vtspereira" target="_blank" aria-label="GitHub"><i class='bx bxl-github'></i></a>
-            <a href="https://linkedin.com/in/vtspereira" target="_blank" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+        
+        <div class="social-links" data-aos="zoom-in" data-aos-delay="300">
+            <a href="https://github.com/vtspereira" target="_blank" class="hover-lift" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+            <a href="https://linkedin.com/in/vtspereira" target="_blank" class="hover-lift" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2023 Vitor Soares Pereira. Todos os direitos reservados.</p>
+        <p>&copy; 2025 Vitor Soares Pereira. Todos os direitos reservados.</p>
     </footer>
 
     <!-- Scripts -->
@@ -488,6 +628,6 @@ class Desenvolvedor {
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/particles-config.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/linkedin-sync.js"></script>
+    <script src="js/testimonials.js"></script>
 </body>
 </html> 
