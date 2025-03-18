@@ -1065,23 +1065,66 @@ body.dark-theme .hero-code-block code {
     width: 50px;
     height: 50px;
     min-width: 50px;
-    background: linear-gradient(45deg, rgba(67, 97, 238, 0.1), rgba(247, 37, 133, 0.1));
-    border-radius: 12px;
+    background-color: var(--highlight);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #4361ee;
-    font-size: 1.5rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-right: var(--space-md);
     position: relative;
+    transition: all var(--transition-normal);
+    flex-shrink: 0;
+    z-index: 1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.dark-theme .education-icon,
+body.dark-theme .language-icon {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.education-icon i, .language-icon i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+.education-icon img.school-logo,
+.language-icon img.school-logo {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 50%;
+    background-color: white;
+    padding: 3px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .education-item:hover .education-icon,
 .language-item:hover .language-icon {
-    background: linear-gradient(45deg, rgba(67, 97, 238, 0.2), rgba(247, 37, 133, 0.2));
-    color: #f72585;
+    background-color: var(--primary-light);
     transform: scale(1.1);
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+body.dark-theme .education-item:hover .education-icon,
+body.dark-theme .language-item:hover .language-icon {
+    background-color: var(--primary-dark);
+}
+
+.education-item:hover .education-icon i,
+.language-item:hover .language-icon i {
+    color: white;
+}
+
+.education-item:hover .education-icon img.school-logo,
+.language-item:hover .language-icon img.school-logo {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .education-details, .language-details {
@@ -1615,17 +1658,18 @@ body.dark-theme .hero-code-block code {
 /* Projects Section */
 .projects-section {
     padding: var(--space-xl) 0;
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-primary);
     position: relative;
 }
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--space-lg);
-    max-width: 1200px;
+    grid-template-columns: repeat(2, minmax(400px, 1fr));
+    gap: 3rem;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 var(--space-md);
+    justify-content: center;
 }
 
 .portfolio-item {
@@ -1633,29 +1677,37 @@ body.dark-theme .hero-code-block code {
     border-radius: var(--radius-md);
     overflow: hidden;
     box-shadow: var(--shadow-md);
-    height: 300px;
-    transition: all var(--transition-normal);
+    height: 320px;
+    transition: all 0.4s ease;
     background-color: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    margin: 0 auto;
+    width: 100%;
+    max-width: 450px;
 }
 
 .portfolio-item:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px var(--shadow);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px var(--shadow);
     border-color: var(--primary);
 }
 
 .portfolio-image {
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bg-secondary);
-    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
 }
 
-.portfolio-item:hover .portfolio-image {
-    opacity: 0.1;
+.project-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-item:hover .project-preview-img {
+    transform: scale(1.05);
 }
 
 .portfolio-overlay {
@@ -1664,23 +1716,41 @@ body.dark-theme .hero-code-block code {
     left: 0;
     width: 100%;
     height: 100%;
+    background: linear-gradient(to top, 
+                rgba(0, 0, 0, 0.9) 0%, 
+                rgba(0, 0, 0, 0.7) 30%,
+                rgba(0, 0, 0, 0.4) 70%,
+                rgba(0, 0, 0, 0) 100%);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    padding: var(--space-md);
+    padding: 2rem;
     opacity: 0;
-    transition: all var(--transition-normal);
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(1px);
 }
 
 .portfolio-item:hover .portfolio-overlay {
     opacity: 1;
 }
 
+body.dark-theme .portfolio-overlay {
+    background: linear-gradient(to top, 
+                rgba(0, 0, 0, 0.95) 0%, 
+                rgba(0, 0, 0, 0.85) 30%,
+                rgba(0, 0, 0, 0.6) 70%,
+                rgba(0, 0, 0, 0.3) 100%);
+    backdrop-filter: blur(2px);
+}
+
 .portfolio-overlay h3 {
-    font-size: var(--fs-h3);
-    color: var(--text-primary);
-    margin-bottom: var(--space-sm);
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 0.75rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 0.75rem;
 }
 
 .portfolio-overlay h3::after {
@@ -1689,52 +1759,231 @@ body.dark-theme .hero-code-block code {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 50px;
+    width: 60px;
     height: 3px;
     background: linear-gradient(to right, var(--primary), var(--accent));
     border-radius: var(--radius-full);
 }
 
 .portfolio-overlay p {
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.9);
     text-align: center;
-    margin-bottom: var(--space-md);
-    font-size: var(--fs-small);
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+    max-width: 100%;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .tech-stack {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.5rem;
-    margin-bottom: var(--space-md);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
 }
 
 .tech-stack span {
-    background-color: var(--bg-primary);
-    color: var(--text-secondary);
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    padding: 0.3rem 0.9rem;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
     font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
 .tech-stack span:hover {
     background-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.project-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.demo-btn, .github-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    text-decoration: none !important;
+    min-width: 130px;
+    text-align: center;
+}
+
+.demo-btn {
+    background: linear-gradient(45deg, var(--primary), var(--primary-dark));
     color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.github-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.demo-btn:hover, .github-btn:hover {
     transform: translateY(-3px);
+    text-decoration: none;
 }
 
-.view-more {
-    background-image: linear-gradient(45deg, var(--primary), var(--primary-dark));
-    box-shadow: 0 5px 15px rgba(var(--primary), 0.3);
-    transition: all var(--transition-normal);
+.demo-btn:hover {
+    box-shadow: 0 6px 15px rgba(108, 99, 255, 0.4);
+    background: linear-gradient(45deg, var(--primary-dark), var(--primary));
 }
 
-.view-more:hover {
-    background-image: linear-gradient(45deg, var(--primary-dark), var(--primary));
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(var(--primary), 0.4);
+.github-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: white;
+}
+
+.more-projects {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.more-projects a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background: var(--primary);
+    color: white;
+    border-radius: var(--radius-full);
+    transition: all 0.3s ease;
+    text-decoration: none !important;
+}
+
+.more-projects a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+    background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+    text-decoration: none;
+}
+
+.more-projects a i {
+    font-size: 1.4rem;
+}
+
+@media (max-width: 1200px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(350px, 1fr));
+        gap: 2.5rem;
+    }
+    
+    .portfolio-item {
+        height: 300px;
+    }
+}
+
+@media (max-width: 992px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+    
+    .portfolio-item {
+        height: 280px;
+        max-width: 380px;
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: minmax(280px, 500px);
+    }
+    
+    .portfolio-item {
+        height: 300px;
+    }
+    
+    .portfolio-overlay h3 {
+        font-size: 1.3rem;
+    }
+    
+    .portfolio-overlay p {
+        font-size: 0.95rem;
+        -webkit-line-clamp: 2;
+    }
+    
+    .tech-stack {
+        margin-bottom: 1.25rem;
+    }
+    
+    .project-links {
+        gap: 1rem;
+    }
+    
+    .demo-btn, .github-btn {
+        padding: 0.5rem 1rem;
+        min-width: 120px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .portfolio-grid {
+        grid-template-columns: minmax(250px, 450px);
+    }
+    
+    .portfolio-item {
+        height: 280px;
+    }
+    
+    .portfolio-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, 
+                    rgba(0, 0, 0, 0.95) 0%, 
+                    rgba(0, 0, 0, 0.8) 40%,
+                    rgba(0, 0, 0, 0.5) 70%,
+                    rgba(0, 0, 0, 0.3) 100%);
+        padding: 1.5rem;
+    }
+    
+    .portfolio-overlay p {
+        -webkit-line-clamp: 2;
+        margin-bottom: 1rem;
+    }
+    
+    .tech-stack {
+        margin-bottom: 1rem;
+        gap: 0.5rem;
+    }
+    
+    .tech-stack span {
+        padding: 0.25rem 0.7rem;
+        font-size: 0.8rem;
+    }
+    
+    .project-links {
+        flex-direction: row;
+        gap: 0.8rem;
+    }
+    
+    .more-projects a {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
 }
 
 /* Contact Section */
@@ -3562,4 +3811,27 @@ body.dark-theme .testimonial-control {
 body.dark-theme .testimonial-linkedin-button {
     background: linear-gradient(45deg, var(--primary), var(--primary-dark));
     box-shadow: 0 5px 15px rgba(138, 132, 255, 0.3);
+}
+
+.education-icon img.school-logo,
+.language-icon img.school-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 50%;
+    background-color: white;
+    padding: 5px;
+    transition: all 0.3s ease;
+}
+
+.education-item:hover .education-icon img.school-logo,
+.language-item:hover .language-icon img.school-logo {
+    transform: scale(1.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-theme .education-icon img.school-logo,
+body.dark-theme .language-icon img.school-logo {
+    background-color: var(--bg-secondary);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
